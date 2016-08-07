@@ -1,0 +1,45 @@
+{
+  "ecmaVersion": 5,
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "outline": {
+      
+    },
+    "node": {
+      
+    },
+    "jshint": {
+      
+    },
+    "lint": {
+      
+    },
+    "jasmine": {
+      
+    },
+    "push": {
+      
+    },
+    "angular1": {
+      
+    },
+    "grunt": {
+      
+    },
+    "cordovajs": {
+      
+    },
+    "node-mongodb-native": {
+      
+    },
+    "protractor": {
+      
+    }
+  },
+  "libs": [
+    "browser",
+    "jquery"
+  ]
+}

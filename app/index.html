@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -21,6 +21,71 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
+	  <div class="header-top">
+		<div class="container">
+			<div class="header-right">
+				<ul>
+					<li><a href="#">Lanquage(EN)</a></li>
+					<li><a href="#">Currency($)</a></li>
+					<li><a href="#">My Account</a></li>
+				</ul>	
+				<div class="cart box dropdown" ng-controller="cartController">
+					<a class="dropdown-toggle icon" data-toggle="dropdown" href="">
+					<img ng-src="images/cartIcon.png" /><span ng-show="{{calculateTotalAmount() > 0}}" class="cartcount" ng-cloak>{{calculateTotalProducts()}}</span>
+					My Cart
+					</a>
+					<div id="cartmenu" class="dropdown-menu pre-scrollable" style="width:28em;">
+						<form id="formProducts" class="form container-fluid">
+						  <div ng-repeat="product in products | filter : product.productAvailable = true" class="form-group">
+							<div class="row">
+								<div class="col-xs-3 prodimg" style="width:6em;">
+									<img ng-src="images/{{product.productImageName}}" alt="Image {{$index + 1}}" />
+								</div>
+								<div class="col-xs-7" style="width:18em;">
+									<div class="row">
+										<h5 title="{{product.productName}}"><b>{{product.productName | limitTo: 50 }}...</b></h5>
+										<h6>{{product.productNumber}}</h6>
+										<h6><b>{{product.price | currency}}</b></h6>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<input type="number" min=1  style="width:4em;" onkeydown="return false;" ng-model="product.quantity" class="form-control" />
+										</div>
+										<div class="col-xs-6">
+											{{product.price * product.quantity | currency}}
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-1 delimg" style="width:2em;">
+									<img src="images/cross.png" ng-click="removeProduct($index)" alt="delete"/>
+								</div>								
+							</div>
+							<div class="divider"></div>
+						  </div>
+						  <div>
+							<div>
+								<h6>You have {{calculateTotalProducts()}} items in your cart.</h6>
+							</div>
+							<div class="row">
+								<div class="col-xs-6" style="text-align:left;"><h4>Subtotal(USD)</h4></div>
+								<div class="col-xs-6" style="text-align:right;"><h4>{{calculateTotalAmount() | currency}}</h4></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">
+									<button type="button" id="btnCart" class="btn" style="width: 11.5em; color:#fff; background-color:grey;">View Cart</button>
+								</div>
+								<div class="col-xs-6">
+									<button type="button" id="btnCheckout" class="btn" style="width: 11.5em; color:#fff; background-color:skyblue;">Checkout</button>
+								</div>	
+							</div>	
+						  </div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>	
+	  </div>
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -57,20 +122,21 @@
       </div>
     </div>
 
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/vega/vega.js"></script>
+    <script src="bower_components/vega-lite/vega-lite.js"></script>
+    <script src="bower_components/viscompass/compass.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
