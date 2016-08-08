@@ -2,10 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Mini Cart</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
@@ -19,8 +18,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
+     <div class="header">
 	  <div class="header-top">
 		<div class="container">
 			<div class="header-right">
@@ -31,12 +29,12 @@
 				</ul>	
 				<div class="cart box dropdown" ng-controller="cartController">
 					<a class="dropdown-toggle icon" data-toggle="dropdown" href="">
-					<img ng-src="images/cartIcon.png" /><span ng-show="{{calculateTotalAmount() > 0}}" class="cartcount" ng-cloak>{{calculateTotalProducts()}}</span>
+					<img ng-src="images/cartIcon.png" /><span ng-show="products.length" class="cartcount" ng-cloak>{{calculateTotalProducts()}}</span>
 					My Cart
 					</a>
 					<div id="cartmenu" class="dropdown-menu pre-scrollable" style="width:28em;">
 						<form id="formProducts" class="form container-fluid">
-						  <div ng-repeat="product in products | filter : product.productAvailable = true" class="form-group">
+						  <div ng-show="products.length" ng-repeat="product in products | filter : product.productAvailable = true" class="form-group">
 							<div class="row">
 								<div class="col-xs-3 prodimg" style="width:6em;">
 									<img ng-src="images/{{product.productImageName}}" alt="Image {{$index + 1}}" />
@@ -62,6 +60,13 @@
 							</div>
 							<div class="divider"></div>
 						  </div>
+						  <div ng-show="!products.length">
+							<div class="row">
+								<h6>You have no items in your cart.</h6>
+								<h6><a style="color: #33B2FF; margin:0" href="">Continue Shopping</a></h6>
+							</div>
+							<div class="divider"></div>
+						  </div>						  
 						  <div>
 							<div>
 								<h6>You have {{calculateTotalProducts()}} items in your cart.</h6>
@@ -70,7 +75,7 @@
 								<div class="col-xs-6" style="text-align:left;"><h4>Subtotal(USD)</h4></div>
 								<div class="col-xs-6" style="text-align:right;"><h4>{{calculateTotalAmount() | currency}}</h4></div>
 							</div>
-							<div class="row">
+							<div class="row"  ng-show="products.length">
 								<div class="col-xs-6">
 									<button type="button" id="btnCart" class="btn" style="width: 11.5em; color:#fff; background-color:grey;">View Cart</button>
 								</div>
@@ -100,12 +105,13 @@
             <a class="navbar-brand" href="#/">minicart</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" style="float:left; font-weight:bold; padding-left:10em;">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li class="active"><a href="#/">Products</a></li>
+			  <li><a ng-href="#/campaign">Campaigns and Promotions</a></li>
+			  <li><a ng-href="#/about">About Us</a></li>
+              <li><a ng-href="#/brands">Brands</a></li>
             </ul>
           </div>
         </div>
@@ -116,11 +122,6 @@
     <div ng-view=""></div>
     </div>
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -143,6 +144,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+		<script src="scripts/controllers/brands.js"></script>
+        <script src="scripts/controllers/campaign.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
 </body>

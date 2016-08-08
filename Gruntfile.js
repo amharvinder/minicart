@@ -31,7 +31,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
 
     // Project settings
-    yeoman: appConfig,
+    minicart: appConfig,
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= minicart.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -51,7 +51,7 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
       },
       compass: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        files: ['<%= minicart.app %>/styles/{,*/}*.{scss,sass}'],
         tasks: ['compass:server', 'postcss:server']
       },
       gruntfile: {
@@ -62,9 +62,9 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
+          '<%= minicart.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= minicart.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
     },
@@ -115,7 +115,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
           open: true,
-          base: '<%= yeoman.dist %>'
+          base: '<%= minicart.dist %>'
         }
       }
     },
@@ -129,7 +129,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= minicart.app %>/scripts/{,*/}*.js'
         ]
       },
       test: {
@@ -149,7 +149,7 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= minicart.app %>/scripts/{,*/}*.js'
         ]
       },
       test: {
@@ -164,8 +164,8 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%= yeoman.dist %>/{,*/}*',
-            '!<%= yeoman.dist %>/.git{,*/}*'
+            '<%= minicart.dist %>/{,*/}*',
+            '!<%= minicart.dist %>/.git{,*/}*'
           ]
         }]
       },
@@ -203,7 +203,7 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
-        src: ['<%= yeoman.app %>/index.html'],
+        src: ['<%= minicart.app %>/index.html'],
         ignorePath:  /\.\.\//
       },
       test: {
@@ -223,7 +223,7 @@ module.exports = function (grunt) {
           }
       },
       sass: {
-        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        src: ['<%= minicart.app %>/styles/{,*/}*.{scss,sass}'],
         ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     }, 
@@ -231,12 +231,12 @@ module.exports = function (grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
-        sassDir: '<%= yeoman.app %>/styles',
+        sassDir: '<%= minicart.app %>/styles',
         cssDir: '.tmp/styles',
         generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= yeoman.app %>/images',
-        javascriptsDir: '<%= yeoman.app %>/scripts',
-        fontsDir: '<%= yeoman.app %>/styles/fonts',
+        imagesDir: '<%= minicart.app %>/images',
+        javascriptsDir: '<%= minicart.app %>/scripts',
+        fontsDir: '<%= minicart.app %>/styles/fonts',
         importPath: './bower_components',
         httpImagesPath: '/images',
         httpGeneratedImagesPath: '/images/generated',
@@ -247,7 +247,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+          generatedImagesDir: '<%= minicart.dist %>/images/generated'
         }
       },
       server: {
@@ -261,10 +261,10 @@ module.exports = function (grunt) {
     filerev: {
       dist: {
         src: [
-          '<%= yeoman.dist %>/scripts/{,*/}*.js',
-          '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-          '<%= yeoman.dist %>/styles/fonts/*'
+          '<%= minicart.dist %>/scripts/{,*/}*.js',
+          '<%= minicart.dist %>/styles/{,*/}*.css',
+          '<%= minicart.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= minicart.dist %>/styles/fonts/*'
         ]
       }
     },
@@ -273,9 +273,9 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
+      html: '<%= minicart.app %>/index.html',
       options: {
-        dest: '<%= yeoman.dist %>',
+        dest: '<%= minicart.dist %>',
         flow: {
           html: {
             steps: {
@@ -290,14 +290,14 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
-      css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
+      html: ['<%= minicart.dist %>/{,*/}*.html'],
+      css: ['<%= minicart.dist %>/styles/{,*/}*.css'],
+      js: ['<%= minicart.dist %>/scripts/{,*/}*.js'],
       options: {
         assetsDirs: [
-          '<%= yeoman.dist %>',
-          '<%= yeoman.dist %>/images',
-          '<%= yeoman.dist %>/styles'
+          '<%= minicart.dist %>',
+          '<%= minicart.dist %>/images',
+          '<%= minicart.dist %>/styles'
         ],
         patterns: {
           js: [[/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images']]
@@ -312,7 +312,7 @@ module.exports = function (grunt) {
     // cssmin: {
     //   dist: {
     //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
+    //       '<%= minicart.dist %>/styles/main.css': [
     //         '.tmp/styles/{,*/}*.css'
     //       ]
     //     }
@@ -321,8 +321,8 @@ module.exports = function (grunt) {
     // uglify: {
     //   dist: {
     //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
+    //       '<%= minicart.dist %>/scripts/scripts.js': [
+    //         '<%= minicart.dist %>/scripts/scripts.js'
     //       ]
     //     }
     //   }
@@ -335,9 +335,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/images',
+          cwd: '<%= minicart.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= minicart.dist %>/images'
         }]
       }
     },
@@ -346,9 +346,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/images',
+          cwd: '<%= minicart.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= minicart.dist %>/images'
         }]
       }
     },
@@ -363,9 +363,9 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: '<%= minicart.dist %>',
           src: ['*.html'],
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= minicart.dist %>'
         }]
       }
     },
@@ -377,7 +377,7 @@ module.exports = function (grunt) {
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
-        cwd: '<%= yeoman.app %>',
+        cwd: '<%= minicart.app %>',
         src: 'views/{,*/}*.html',
         dest: '.tmp/templateCache.js'
       }
@@ -399,7 +399,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= minicart.dist %>/*.html']
       }
     },
 
@@ -409,8 +409,8 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= yeoman.app %>',
-          dest: '<%= yeoman.dist %>',
+          cwd: '<%= minicart.app %>',
+          dest: '<%= minicart.dist %>',
           src: [
             '*.{ico,png,txt}',
             '*.html',
@@ -420,18 +420,18 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           cwd: '.tmp/images',
-          dest: '<%= yeoman.dist %>/images',
+          dest: '<%= minicart.dist %>/images',
           src: ['generated/*']
         }, {
           expand: true,
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= minicart.dist %>'
         }]
       },
       styles: {
         expand: true,
-        cwd: '<%= yeoman.app %>/styles',
+        cwd: '<%= minicart.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
       }

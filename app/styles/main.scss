@@ -3,6 +3,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+/* Css for Browser Support section*/
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -14,87 +15,17 @@ body {
   padding: 0;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-  }
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 30px;
 }
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-  margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-
-  p + h4 {
-    margin-top: 28px;
-  }
-}
-
-/* Responsive: Portrait tablets and up */
-/*@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }*/
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
   
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-//}
-
 .header-top {
 	background: #017;
-//	padding: 15px 0;
-
 
 	.header-right {
 		float: right;
@@ -120,6 +51,7 @@ body {
 		}
 	}
 
+	/* Cart Box styling */
 	.cart.box {
 		float: right;
 		height: 2.3em;
@@ -130,10 +62,9 @@ body {
 			color:black;
 			font-size: 1.1em;
 			margin: 1em 2em;
-			
-			//&:hover { color:#AED; }
 		}
 		
+		/*  CSS for Dropdown that opensup when cart is clicked */
 		.dropdown-menu {
 			left: -17em;
 			min-width: 25em;
@@ -149,6 +80,7 @@ body {
 			}
 		}
 		
+		/* Cart Icon */
 		.icon img{
 			height: 1.1em;
 			width: 1em;
@@ -157,9 +89,15 @@ body {
 	}
 }
 
+/*
+	Cart Slim Scrollbar
+*/
 #cartmenu::-webkit-scrollbar { width:5px;} 
 #cartmenu::-webkit-scrollbar-thumb { background-color:lightgray;border-radius:10px; }
 
+/*
+	CSS for Cart product count 
+*/
 .cartcount{
     font-size: 10px;
     background: #ff0000;
@@ -175,8 +113,8 @@ body {
 }
 
 /* 
-  Before page load unprocessed angular code was showing up but ng-cloak 
-  couldn't came to the resque as a whole.
+  Before page load, unprocessed angular code was showing up but ng-cloak 
+  couldn't came to the resque as a whole. That's why added this to make it work.
  */
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;

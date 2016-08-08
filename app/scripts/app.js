@@ -8,16 +8,24 @@
  *
  * Main module of the application.
  */
- 
-var minicartApp = angular.module('minicartApp', [ 	'ngCookies',
-													'ngMessages',
+
+/*
+ Minicart app with dependencies. Currently not all are in use but 
+ could be nicely used here.
+*/ 
+var minicartApp = angular.module('minicartApp', [ 	'ngMessages',
 													'ngResource',
 													'ngRoute',
 													'ngSanitize',
 													'ngTouch'
 												  ]);
 
+/*
+ Minicart controller with some features.
+*/												  
 minicartApp.controller("cartController", function($scope) {
+
+	/* Static Product data. Later we can dynamically fill this up. */
     $scope.products = [
 						  {
 							"productNumber": 411,
@@ -61,15 +69,10 @@ minicartApp.controller("cartController", function($scope) {
 						  }
 						];
 
-	$scope.anyAvailableProduct = function(){
-		angular.forEach($scope.products, function(product){
-		  if (!product.productAvailable) {
-			return false;
-		  }
-		});
-		return true;
-	};
-						
+	
+	/*
+	 Calculate the total number of available products for checkout
+	*/
 	$scope.calculateTotalProducts = function(){
 		var totalProducts = 0;
 		angular.forEach($scope.products, function(product){
@@ -80,6 +83,9 @@ minicartApp.controller("cartController", function($scope) {
 		return totalProducts;
 	};
 
+	/*
+		Calculate Final amount of all available products for the checkout.
+	*/
 	$scope.calculateTotalAmount = function(){
 		var totalAmount = 0;
 		angular.forEach($scope.products, function(product){
@@ -90,16 +96,18 @@ minicartApp.controller("cartController", function($scope) {
 		return totalAmount;
 	};
 	
-	$scope.anyProductAdded = function(){
-		return $scope.calculateTotalAmount() > 0;
-	};
-
+	/*
+		Invoke this to remove any element from the cart.
+	*/
     $scope.removeProduct = function (index) {
         $scope.products.splice(index, 1);
     };
 
 });												  
-												  
+
+/*
+   Routes for all the Menu links.
+*/												  
 minicartApp.config(function ($routeProvider) {
 $routeProvider
   .when('/', {
@@ -111,6 +119,16 @@ $routeProvider
 	templateUrl: 'views/about.html',
 	controller: 'AboutCtrl',
 	controllerAs: 'about'
+  })
+  .when('/brands', {
+	templateUrl: 'views/brands.html',
+	controller: 'BrandsCtrl',
+	controllerAs: 'brands'
+  })
+  .when('/campaign', {
+	templateUrl: 'views/campaign.html',
+	controller: 'CampaignCtrl',
+	controllerAs: 'campaign'
   })
   .otherwise({
 	redirectTo: '/'

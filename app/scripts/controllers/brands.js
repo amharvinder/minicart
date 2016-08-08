@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc function
- * @name minicartApp.controller:AboutCtrl
+ * @name minicartApp.controller:BrandsCtrl
  * @description
- * # AboutCtrl
+ * # BrandsCtrl
  * Controller of the minicartApp
  */
 angular.module('minicartApp')
-  .controller('AboutCtrl', function () {
+  .controller('BrandsCtrl', function () {
   });
